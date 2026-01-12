@@ -1,13 +1,36 @@
 ---
 const {
   primaryLabel = "Call/Text Coach",
-  primaryHref = "tel:+15551234567",
+  primaryHref = "tel:+19704242757",
+  primaryPhone = "970-424-2757",
   secondaryLabel = "Join Updates",
   secondaryHref = "/join",
   secondaryVariant = "secondary",
+  flipPrimary = true,
 } = Astro.props;
+
+const showFlip = flipPrimary && primaryLabel && primaryPhone;
+const isCallLink =
+  typeof primaryHref === "string" && primaryHref.trim().startsWith("tel:");
+const primaryAriaLabel = showFlip
+  ? `${primaryLabel} at ${primaryPhone}`
+  : primaryLabel;
 ---
 <div class="cta-group">
-  <a class="btn primary" href={primaryHref}>{primaryLabel}</a>
+  <a
+    class={`btn primary${showFlip ? " btn-flip" : ""}`}
+    href={primaryHref}
+    aria-label={primaryAriaLabel}
+    data-call-button={isCallLink ? "true" : undefined}
+  >
+    {showFlip ? (
+      <span class="btn-flip-inner" aria-hidden="true">
+        <span class="btn-face btn-face--front">{primaryLabel}</span>
+        <span class="btn-face btn-face--back">{primaryPhone}</span>
+      </span>
+    ) : (
+      primaryLabel
+    )}
+  </a>
   <a class={`btn ${secondaryVariant}`} href={secondaryHref}>{secondaryLabel}</a>
 </div>

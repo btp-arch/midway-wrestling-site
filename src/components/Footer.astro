@@ -1,7 +1,7 @@
 ---
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/practice", label: "Practice" },
+  { href: "/schedule", label: "Schedule" },
   { href: "/coaches", label: "Coaches" },
   { href: "/faq", label: "FAQ" },
   { href: "/news", label: "News" },
@@ -29,10 +29,20 @@ const socialLinks = [
         />
         Midway Wrestling Club
       </span>
-      <p class="muted">
-        Competitive, confidence-building training in a focused and supportive
-        room.
-      </p>
+      <div class="footer-cta">
+        <a
+          class="btn primary btn-flip"
+          href="tel:+19704242757"
+          aria-label="Call/Text Coach at 970-424-2757"
+          data-call-button="true"
+        >
+          <span class="btn-flip-inner" aria-hidden="true">
+            <span class="btn-face btn-face--front">Call/Text Coach</span>
+            <span class="btn-face btn-face--back">970-424-2757</span>
+          </span>
+        </a>
+        <a class="btn secondary" href="/join">Join Updates</a>
+      </div>
     </div>
     <div class="stack">
       <p class="eyebrow">Navigate</p>
@@ -49,7 +59,7 @@ const socialLinks = [
           <a href={link.href}>{link.label}</a>
         ))}
       </div>
-      <p class="muted">@midwaywrestling (placeholder)</p>
+      <p class="muted">@midwaywrestling</p>
     </div>
   </div>
 </footer>

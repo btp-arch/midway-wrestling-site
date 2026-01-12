@@ -1,7 +1,7 @@
 ---
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/practice", label: "Practice" },
+  { href: "/schedule", label: "Schedule" },
   { href: "/coaches", label: "Coaches" },
   { href: "/faq", label: "FAQ" },
   { href: "/news", label: "News" },
@@ -37,46 +37,46 @@ const navLinks = [
       Menu
     </button>
   </div>
-  <div class="mobile-menu" id="mobile-menu" data-menu hidden>
-    <button
-      class="mobile-menu__overlay"
-      type="button"
-      data-menu-overlay
-      aria-hidden="true"
-      tabindex="-1"
-    ></button>
-    <div
-      class="mobile-menu__panel"
-      data-menu-panel
-      role="dialog"
-      aria-modal="true"
-      aria-label="Mobile navigation"
-    >
-      <div class="mobile-menu__header">
-        <span class="logo">
-          <img
-            class="logo-mark"
-            src="/logos/redhat_no_bg.png"
-            alt=""
-            width="38"
-            height="38"
-            loading="lazy"
-            decoding="async"
-          />
-          MWC
-        </span>
-        <button class="menu-close" type="button" data-menu-close>
-          Close
-        </button>
-      </div>
-      <nav class="mobile-menu__links" aria-label="Mobile">
-        {navLinks.map((link) => (
-          <a href={link.href}>{link.label}</a>
-        ))}
-      </nav>
-    </div>
-  </div>
 </header>
+<div class="mobile-menu" id="mobile-menu" data-menu hidden>
+  <button
+    class="mobile-menu__overlay"
+    type="button"
+    data-menu-overlay
+    aria-hidden="true"
+    tabindex="-1"
+  ></button>
+  <div
+    class="mobile-menu__panel"
+    data-menu-panel
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-menu__header">
+      <span class="logo">
+        <img
+          class="logo-mark"
+          src="/logos/redhat_no_bg.png"
+          alt=""
+          width="38"
+          height="38"
+          loading="lazy"
+          decoding="async"
+        />
+        MWC
+      </span>
+      <button class="menu-close" type="button" data-menu-close>
+        Close
+      </button>
+    </div>
+    <nav class="mobile-menu__links" aria-label="Mobile">
+      {navLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</div>
 
 <script is:inline>
   const menu = document.querySelector("[data-menu]");

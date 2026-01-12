@@ -11,7 +11,7 @@ If you are joining us for the new season, please complete registration and the U
 
 Checklist:
 - Confirm athlete name and age group
-- Complete the USAW membership online (placeholder link)
+- Complete the USAW membership online
 - Send a text to the head coach once finished
 
 Need help? Text or call and we will walk you through it.

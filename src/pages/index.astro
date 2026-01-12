@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import Card from "../components/Card.astro";
-import CTAButtons from "../components/CTAButtons.astro";
 import { getCollection } from "astro:content";
 import { readdir } from "node:fs/promises";
 
@@ -45,21 +44,37 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
     title="Midway Wrestling Club"
     subtitle="Build grit, strength, and confidence through focused coaching and an accountable team culture."
     primaryLabel="Call/Text Coach"
-    primaryHref="tel:+15551234567"
+    primaryHref="tel:+19704242757"
     secondaryLabel="Join Updates"
     secondaryHref="/join"
+    showCtas={false}
   >
-    <div class="tag-row">
-      <span class="tag">Youth focused</span>
-      <span class="tag">Technique first</span>
-      <span class="tag">Competition ready</span>
+    <div slot="below-title" class="hero-photos">
+      <p class="eyebrow">Moments from the mat</p>
+      <div class="photo-scroll" aria-label="Photo highlights" data-photo-scroll>
+        {displayPhotos.map((photo) => (
+          <figure class="photo-tile">
+            {photo.src ? (
+              <img
+                class="photo-tile__img"
+                src={photo.src}
+                alt={photo.alt ?? ""}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span class="photo-placeholder">{photo.label}</span>
+            )}
+          </figure>
+        ))}
+      </div>
     </div>
     <div slot="aside">
       <Card
         accent
         meta="Season Snapshot"
-        title="Fall Session"
-        description="Start date: TBD (placeholder)"
+        title="2026 Fall/Winter"
+        description="Start date: October 13th"
       >
         <img
           slot="media"
@@ -71,9 +86,6 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
           loading="lazy"
           decoding="async"
         />
-        <p class="muted">
-          Training emphasis: stance, motion, chain defense, and match strategy.
-        </p>
       </Card>
     </div>
   </Hero>
@@ -81,127 +93,31 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
   <Section
     id="glance"
     eyebrow="At a glance"
-    title="Everything you need, fast."
-    intro="Quick details you can edit any time."
+    title="Current club information"
+    intro="Key details for parents and athletes."
   >
     <div class="grid grid-2 grid-4">
       <Card
         meta="Age Groups"
-        title="Ages 6-14"
-        description="Co-ed, beginner friendly (placeholder)."
+        title="Ages 10-High School"
+        description="2-3 years of wrestling experience is highly recommended."
       />
       <Card
-        meta="Practice"
-        title="Mon/Wed/Thu"
-        description="6:00-7:30 PM (placeholder)."
+        meta="Schedule"
+        title="Monday & Wednesday"
+        description="6:30-7:45 PM."
       />
       <Card
         meta="Location"
-        title="Midway Community Gym"
-        description="123 Main St, Midway, OH (placeholder)."
+        title="Delta Middle School"
+        description="401 E 10th St, Delta, CO 81416."
       />
       <Card
         meta="Cost"
-        title="$85/month"
-        description="Plus USAW card (placeholder)."
+        title="$80/month"
+        description="Sibling/Family discounts available"
       />
     </div>
-  </Section>
-
-  <Section
-    id="practice"
-    eyebrow="Practice Info"
-    title="Practice details without the scroll."
-    intro="Key info is right here, with the full schedule one click away."
-  >
-    <div class="grid grid-2">
-      <Card
-        title="Weeknight Practices"
-        description="Focused live and drilling sessions with level-based groups."
-      >
-        <p class="muted">Mon/Wed/Thu, 6:00-7:30 PM (placeholder).</p>
-      </Card>
-      <Card
-        title="Midway Wrestling Room"
-        description="Purpose-built space with dedicated mat time."
-      >
-        <p class="muted">123 Main St, Midway, OH (placeholder).</p>
-      </Card>
-    </div>
-    <div class="cta-row">
-      <a class="btn outline" href="/practice">View Practice Details</a>
-    </div>
-  </Section>
-
-  <Section
-    id="why"
-    eyebrow="Why Midway"
-    title="Why athletes stay and grow."
-    intro="A training environment built for confidence and performance."
-  >
-    <div class="grid grid-2 grid-3">
-      <Card
-        title="Technique-first coaching"
-        description="Progressions that build strong fundamentals and safe habits."
-      />
-      <Card
-        title="Focused room culture"
-        description="Respect, accountability, and high effort every session."
-      />
-      <Card
-        title="Competition preparation"
-        description="Smart match strategy, mental toughness, and pacing."
-      />
-      <Card
-        title="Flexible for families"
-        description="Clear communication and easy updates for parents."
-      />
-    </div>
-  </Section>
-
-  <Section
-    id="coaches"
-    eyebrow="Coaches"
-    title="Coaches who build confidence."
-    intro="Experienced leaders who teach the details and the mindset."
-  >
-    <div class="grid grid-2 grid-3">
-      <Card title="Coach Taylor" description="Head Coach - 12+ years leading youth programs." />
-      <Card title="Coach Morgan" description="Assistant Coach - Technical focus and film study." />
-      <Card title="Coach Reyes" description="Youth Coach - Fundamentals and beginner support." />
-    </div>
-    <div class="cta-row">
-      <a class="btn outline" href="/coaches">Meet the Coaches</a>
-    </div>
-  </Section>
-
-  <Section
-    id="photos"
-    eyebrow="Photos"
-    title="Moments from the mat."
-    intro="Drop your images into public/photos and update captions as needed."
-  >
-    <div class="photo-scroll" aria-label="Photo highlights" data-photo-scroll>
-      {displayPhotos.map((photo) => (
-        <figure class="photo-tile">
-          {photo.src ? (
-            <img
-              class="photo-tile__img"
-              src={photo.src}
-              alt={photo.alt ?? ""}
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span class="photo-placeholder">{photo.label}</span>
-          )}
-        </figure>
-      ))}
-    </div>
-    <p class="note">
-      This section automatically loads every image in <code>public/photos</code>. Add or remove
-      files there to update the carousel.
-    </p>
   </Section>
 
   <script is:inline>
@@ -273,7 +189,15 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
         }
       });
 
-      start();
+      const startAuto = () => {
+        if (!isPaused) start();
+      };
+
+      if (document.readyState === "loading") {
+        window.addEventListener("load", startAuto, { once: true });
+      } else {
+        startAuto();
+      }
     });
   </script>
 
@@ -299,60 +223,4 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
     </div>
   </Section>
 
-  <Section
-    id="faq"
-    eyebrow="FAQ"
-    title="Common questions."
-    intro="Answers to help you decide quickly."
-  >
-    <div class="grid grid-2">
-      <Card
-        title="Is this for beginners?"
-        description="Yes, we group athletes by experience and focus on basics first."
-      />
-      <Card
-        title="What gear is required?"
-        description="Wrestling shoes and a water bottle to start (placeholder)."
-      />
-      <Card
-        title="How do we sign up?"
-        description="Send a quick message, then we confirm a first practice."
-      />
-      <Card
-        title="Can parents watch?"
-        description="Yes, we have a designated viewing area (placeholder)."
-      />
-    </div>
-    <div class="cta-row">
-      <a class="btn outline" href="/faq">View all FAQs</a>
-    </div>
-  </Section>
-
-  <Section
-    id="join"
-    eyebrow="Join"
-    title="Ready to step on the mat?"
-    intro="Reach out to the coaches or join updates for schedule changes."
-  >
-    <div class="grid grid-2">
-      <Card
-        accent
-        title="Start the conversation"
-        description="We will help you find the right group and first practice."
-      >
-        <CTAButtons
-          primaryLabel="Call/Text Coach"
-          primaryHref="tel:+15551234567"
-          secondaryLabel="Join Updates"
-          secondaryHref="/join"
-        />
-      </Card>
-      <Card
-        title="Need the full breakdown?"
-        description="Practice times, pricing, and what to bring are one click away."
-      >
-        <a class="btn outline" href="/practice">View Practice Details</a>
-      </Card>
-    </div>
-  </Section>
 </BaseLayout>

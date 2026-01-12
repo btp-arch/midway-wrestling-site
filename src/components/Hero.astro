@@ -6,25 +6,34 @@ const {
   subtitle,
   kicker = null,
   primaryLabel = "Call/Text Coach",
-  primaryHref = "tel:+15551234567",
+  primaryHref = "tel:+19704242757",
   secondaryLabel = "Join Updates",
   secondaryHref = "/join",
+  showCtas = true,
 } = Astro.props;
 
 const hasAside = Astro.slots.has("aside");
+const hasBelowTitle = Astro.slots.has("below-title");
 ---
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-content">
       {kicker && <p class="eyebrow">{kicker}</p>}
-      <h1>{title}</h1>
+      <h1 class="hero-title">{title}</h1>
+      {hasBelowTitle && (
+        <div class="hero-below-title">
+          <slot name="below-title" />
+        </div>
+      )}
       {subtitle && <p class="lead">{subtitle}</p>}
-      <CTAButtons
-        primaryLabel={primaryLabel}
-        primaryHref={primaryHref}
-        secondaryLabel={secondaryLabel}
-        secondaryHref={secondaryHref}
-      />
+      {showCtas && (
+        <CTAButtons
+          primaryLabel={primaryLabel}
+          primaryHref={primaryHref}
+          secondaryLabel={secondaryLabel}
+          secondaryHref={secondaryHref}
+        />
+      )}
       <slot />
     </div>
     {hasAside && (

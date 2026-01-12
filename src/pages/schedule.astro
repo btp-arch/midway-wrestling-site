@@ -1,0 +1,220 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+
+const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const buildMonth = (monthIndex, year) => {
+  const firstDay = new Date(year, monthIndex, 1);
+  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+  const startDay = firstDay.getDay();
+  const weeks = [];
+  let day = 1;
+
+  while (day <= daysInMonth) {
+    const week = Array(7).fill(null);
+    for (let i = 0; i < 7; i += 1) {
+      if (weeks.length === 0 && i < startDay) continue;
+      if (day > daysInMonth) break;
+      week[i] = day;
+      day += 1;
+    }
+    weeks.push(week);
+  }
+
+  return {
+    key: `${year}-${monthIndex + 1}`,
+    label: `${monthNames[monthIndex]} ${year}`,
+    shortLabel: monthNames[monthIndex].slice(0, 3),
+    year,
+    monthIndex,
+    weeks,
+  };
+};
+
+const seasonMonthsConfig = [
+  { monthIndex: 9, year: 2025 },
+  { monthIndex: 10, year: 2025 },
+  { monthIndex: 11, year: 2025 },
+  { monthIndex: 0, year: 2026 },
+  { monthIndex: 1, year: 2026 },
+  { monthIndex: 2, year: 2026 },
+];
+
+const seasonMonths = seasonMonthsConfig.map(({ monthIndex, year }) =>
+  buildMonth(monthIndex, year)
+);
+
+const now = new Date();
+const currentMonthIndex = seasonMonthsConfig.findIndex(
+  (month) => month.monthIndex === now.getMonth() && month.year === now.getFullYear()
+);
+const defaultMonthIndex = currentMonthIndex >= 0 ? currentMonthIndex : 0;
+
+const noPracticeDates = new Set([
+  "2025-10-01",
+  "2025-10-06",
+  "2025-10-08",
+  "2025-11-26",
+  "2025-12-22",
+  "2025-12-24",
+  "2026-03-11",
+]);
+---
+
+<BaseLayout
+  title="Schedule | Midway Wrestling Club"
+  description="Schedule details, what to bring, and pricing for Midway Wrestling Club."
+>
+  <Section className="section-tight">
+    <div class="calendar-hero card">
+      <div class="calendar-hero__head">
+        <div>
+          <p class="eyebrow">Season Calendar</p>
+          <h3 class="calendar-title">October - March</h3>
+          <p class="muted">Select a month to view the full calendar.</p>
+        </div>
+        <div class="calendar-controls" role="tablist" aria-label="Select month">
+          {seasonMonths.map((month, index) => (
+            <button
+              class={`month-toggle${index === defaultMonthIndex ? " is-active" : ""}`}
+              type="button"
+              data-month-button={month.key}
+              aria-pressed={index === defaultMonthIndex ? "true" : "false"}
+            >
+              {month.shortLabel}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div class="calendar-panels">
+        {seasonMonths.map((month, index) => (
+          <div
+            class={`calendar-month${index === defaultMonthIndex ? " is-active" : ""}`}
+            data-month-panel={month.key}
+            aria-hidden={index === defaultMonthIndex ? "false" : "true"}
+          >
+            <div class="calendar-month__header">
+              <h4>{month.label}</h4>
+            </div>
+            <div class="calendar-weekdays">
+              {weekDays.map((day) => (
+                <span class="calendar-weekday">{day}</span>
+              ))}
+            </div>
+            <div class="calendar-days">
+              {month.weeks.map((week) =>
+                week.map((day, dayIndex) => {
+                  if (!day) {
+                    return <span class="calendar-day is-empty" aria-hidden="true"></span>;
+                  }
+                  const dateKey = `${month.year}-${String(month.monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+                  const isPractice =
+                    (dayIndex === 1 || dayIndex === 3) && !noPracticeDates.has(dateKey);
+                  const label = isPractice
+                    ? "Practice, 6:30-7:45pm, Delta Middle School"
+                    : null;
+                  return (
+                    <span
+                      class={`calendar-day${isPractice ? " is-practice" : ""}`}
+                      aria-label={`${month.label} ${day}${label ? `, ${label}` : ""}`}
+                    >
+                      <span class="calendar-day__number">{day}</span>
+                      {isPractice && (
+                        <img
+                          class="calendar-day__icon"
+                          src="/logos/redhat_no_bg.png"
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                    </span>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="calendar-legend">
+        <span class="calendar-legend__swatch" aria-hidden="true">
+          <img
+            class="calendar-legend__icon"
+            src="/logos/redhat_no_bg.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+        <p class="calendar-legend__text">
+          Practice <span aria-hidden="true">•</span> 6:30-7:45pm{" "}
+          <span aria-hidden="true">•</span> Delta Middle School
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Pricing"
+    title="Membership options"
+    intro="Choose the plan that fits your season."
+  >
+    <div class="grid grid-2 grid-3">
+      <Card title="Drop-in" description="$20 per session." />
+      <Card title="Monthly" description="$80 per month." />
+      <Card title="Season" description="Available Fall 2026" />
+    </div>
+  </Section>
+
+  <script is:inline define:vars={{ defaultMonthIndex }}>
+    const monthButtons = document.querySelectorAll("[data-month-button]");
+    const monthPanels = document.querySelectorAll("[data-month-panel]");
+
+    const setActiveMonth = (key) => {
+      monthPanels.forEach((panel) => {
+        const isActive = panel.getAttribute("data-month-panel") === key;
+        panel.classList.toggle("is-active", isActive);
+        panel.setAttribute("aria-hidden", String(!isActive));
+      });
+      monthButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-month-button") === key;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+
+    monthButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-month-button");
+        if (key) setActiveMonth(key);
+      });
+    });
+
+    if (monthButtons.length) {
+      const initialIndex =
+        Number.isInteger(defaultMonthIndex) && defaultMonthIndex >= 0
+          ? defaultMonthIndex
+          : 0;
+      const initialKey =
+        monthButtons[initialIndex]?.getAttribute("data-month-button") ||
+        monthButtons[0].getAttribute("data-month-button");
+      if (initialKey) setActiveMonth(initialKey);
+    }
+  </script>
+</BaseLayout>
