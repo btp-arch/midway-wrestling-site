@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+---
+
+<BaseLayout
+  title="Practice Info | Midway Wrestling Club"
+  description="Practice schedules, what to bring, and pricing for Midway Wrestling Club."
+>
+  <Section
+    eyebrow="Practice"
+    title="Practice info"
+    intro="Key details for your first week on the mat."
+  >
+    <div class="grid grid-2">
+      <Card title="Weekly Schedule" description="Mon/Wed/Thu, 6:00-7:30 PM.">
+        <p class="muted">Arrive 10 minutes early to check in (placeholder).</p>
+      </Card>
+      <Card title="Midway Community Gym" description="123 Main St, Midway, OH.">
+        <p class="muted">Enter through the south doors, wrestling room on the right.</p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Schedule"
+    title="Upcoming sessions"
+    intro="Sample week until the official calendar is finalized."
+  >
+    <div class="grid grid-2 grid-3">
+      <Card title="Monday" description="Technique focus - stance, motion, and setups.">
+        <p class="muted">6:00-7:30 PM (placeholder).</p>
+      </Card>
+      <Card title="Wednesday" description="Live goes + conditioning blocks.">
+        <p class="muted">6:00-7:30 PM (placeholder).</p>
+      </Card>
+      <Card title="Thursday" description="Match strategy and competition reps.">
+        <p class="muted">6:00-7:30 PM (placeholder).</p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="What to bring"
+    title="Come prepared"
+    intro="A few essentials will keep practice smooth and safe."
+  >
+    <div class="grid grid-2">
+      <Card title="Required items" description="Bring these every session.">
+        <ul class="checklist">
+          <li>Wrestling shoes</li>
+          <li>Water bottle</li>
+          <li>Athletic clothing</li>
+          <li>Optional headgear</li>
+        </ul>
+      </Card>
+      <Card title="Nice to have" description="Helpful extras for longer sessions.">
+        <ul class="checklist">
+          <li>Light snack for after practice</li>
+          <li>Small towel</li>
+          <li>Personal athletic tape</li>
+        </ul>
+      </Card>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="First practice"
+    title="What to expect"
+    intro="We keep the first session welcoming and structured."
+  >
+    <div class="grid grid-2">
+      <Card title="Warm welcome" description="Meet the coaches, tour the room, and review safety rules." />
+      <Card title="Clear progression" description="Beginners start with stance, motion, and basic defense." />
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Pricing"
+    title="Membership options"
+    intro="Choose the plan that fits your season."
+  >
+    <div class="grid grid-2 grid-3">
+      <Card title="Drop-in" description="$20 per session (placeholder)." />
+      <Card title="Monthly" description="$85 per month (placeholder)." />
+      <Card title="Season" description="$250 per season (placeholder)." />
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Get started"
+    title="Ready to join practice?"
+    intro="Call or text the head coach for the next open mat."
+  >
+    <CTAButtons
+      primaryLabel="Call/Text Coach"
+      primaryHref="tel:+15551234567"
+      secondaryLabel="Join Updates"
+      secondaryHref="/join"
+      secondaryVariant="outline"
+    />
+  </Section>
+</BaseLayout>

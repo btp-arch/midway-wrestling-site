@@ -1,0 +1,20 @@
+---
+const { id, eyebrow, title, intro, className, headingTag = "h2" } = Astro.props;
+const sectionClass = ["section", className].filter(Boolean).join(" ");
+const hasHeader = eyebrow || title || intro;
+const HeadingTag = headingTag;
+---
+<section id={id} class={sectionClass}>
+  <div class="container">
+    {hasHeader && (
+      <div class="section-header">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {title && <HeadingTag>{title}</HeadingTag>}
+        {intro && <p class="lead">{intro}</p>}
+      </div>
+    )}
+    <div class="section-content">
+      <slot />
+    </div>
+  </div>
+</section>

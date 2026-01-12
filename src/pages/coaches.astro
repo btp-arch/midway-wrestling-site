@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+---
+
+<BaseLayout
+  title="Coaches | Midway Wrestling Club"
+  description="Meet the Midway Wrestling Club coaching staff."
+>
+  <Section
+    eyebrow="Coaches"
+    title="Meet the coaching staff"
+    intro="Experienced leaders who teach fundamentals, confidence, and match strategy."
+  >
+    <div class="grid grid-2 grid-3">
+      <Card
+        meta="Head Coach"
+        title="Coach Taylor"
+        description="12+ years of youth coaching and program leadership."
+      >
+        <p class="muted">
+          Focuses on disciplined technique, growth mindset, and accountable team
+          culture.
+        </p>
+      </Card>
+      <Card
+        meta="Assistant Coach"
+        title="Coach Morgan"
+        description="Specializes in neutral position and film review."
+      >
+        <p class="muted">
+          Known for breaking down complex moves into simple, repeatable steps.
+        </p>
+      </Card>
+      <Card
+        meta="Youth Coach"
+        title="Coach Reyes"
+        description="Leads beginner groups and first practice onboarding."
+      >
+        <p class="muted">
+          Builds confidence through positive reinforcement and clear progression.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Values"
+    title="Credentials and values"
+    intro="The standards we coach by in every practice."
+  >
+    <div class="grid grid-2">
+      <Card title="Certified and safety-first" description="Background checks and USAW requirements in place (placeholder)." />
+      <Card title="Technique over shortcuts" description="We prioritize fundamentals before advanced combinations." />
+      <Card title="Respect and accountability" description="Athletes are expected to listen, work hard, and support teammates." />
+      <Card title="Family communication" description="Clear updates on practice changes and competition schedules." />
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Contact"
+    title="Want to connect with a coach?"
+    intro="Reach out any time for a quick fit check or schedule update."
+  >
+    <CTAButtons
+      primaryLabel="Call/Text Coach"
+      primaryHref="tel:+15551234567"
+      secondaryLabel="Join Updates"
+      secondaryHref="/join"
+      secondaryVariant="outline"
+    />
+  </Section>
+</BaseLayout>

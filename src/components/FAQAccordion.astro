@@ -1,0 +1,60 @@
+---
+const { items = [], baseId = "faq" } = Astro.props;
+---
+<div class="accordion" data-accordion>
+  {items.map((item, index) => {
+    const triggerId = `${baseId}-trigger-${index}`;
+    const panelId = `${baseId}-panel-${index}`;
+    return (
+      <div class="accordion-item" data-accordion-item>
+        <h3>
+          <button
+            class="accordion-trigger"
+            type="button"
+            id={triggerId}
+            aria-expanded="false"
+            aria-controls={panelId}
+          >
+            {item.question}
+          </button>
+        </h3>
+        <div
+          id={panelId}
+          class="accordion-panel"
+          role="region"
+          aria-labelledby={triggerId}
+          hidden
+        >
+          <p>{item.answer}</p>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<script is:inline>
+  const initAccordion = () => {
+    document.querySelectorAll("[data-accordion]").forEach((accordion) => {
+      accordion.addEventListener("click", (event) => {
+        const trigger = event.target.closest(".accordion-trigger");
+        if (!trigger) return;
+        const panelId = trigger.getAttribute("aria-controls");
+        const panel = panelId ? document.getElementById(panelId) : null;
+        if (!panel) return;
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+        trigger.setAttribute("aria-expanded", String(!isExpanded));
+        panel.hidden = isExpanded;
+        const item = trigger.closest(".accordion-item");
+        if (item) {
+          item.classList.toggle("is-open", !isExpanded);
+        }
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAccordion);
+  } else {
+    initAccordion();
+  }
+</script>

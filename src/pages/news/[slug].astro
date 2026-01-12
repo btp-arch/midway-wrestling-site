@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import CTAButtons from "../../components/CTAButtons.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("news");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const formattedDate = entry.data.date.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<BaseLayout
+  title={`${entry.data.title} | Midway Wrestling Club`}
+  description={entry.data.excerpt}
+>
+  <Section
+    eyebrow="News"
+    title={entry.data.title}
+    intro={entry.data.excerpt}
+    headingTag="h1"
+  >
+    <article class="article">
+      <div class="article-meta">
+        <span>{formattedDate}</span>
+        {entry.data.author && <span>{entry.data.author}</span>}
+      </div>
+      {entry.data.cover && (
+        <img
+          class="article-cover"
+          src={entry.data.cover}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <div class="article-content">
+        <Content />
+      </div>
+    </article>
+  </Section>
+
+  <Section
+    eyebrow="Stay connected"
+    title="More updates coming"
+    intro="Join updates or contact the coaches with questions."
+  >
+    <CTAButtons
+      primaryLabel="Call/Text Coach"
+      primaryHref="tel:+15551234567"
+      secondaryLabel="Join Updates"
+      secondaryHref="/join"
+      secondaryVariant="outline"
+    />
+  </Section>
+</BaseLayout>

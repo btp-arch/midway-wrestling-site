@@ -1,0 +1,16 @@
+---
+const { title, description, meta, accent } = Astro.props;
+const hasMedia = Astro.slots.has("media");
+const classes = ["card", accent ? "card-accent" : null].filter(Boolean).join(" ");
+---
+<div class={classes}>
+  {hasMedia && (
+    <div class="card-media">
+      <slot name="media" />
+    </div>
+  )}
+  {meta && <p class="card-meta">{meta}</p>}
+  {title && <h3>{title}</h3>}
+  {description && <p class="muted">{description}</p>}
+  <slot />
+</div>

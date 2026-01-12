@@ -1,0 +1,55 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/practice", label: "Practice" },
+  { href: "/coaches", label: "Coaches" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/news", label: "News" },
+  { href: "/join", label: "Join" },
+];
+
+const socialLinks = [
+  { href: "#", label: "Instagram" },
+  { href: "#", label: "Facebook" },
+  { href: "#", label: "YouTube" },
+];
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="stack">
+      <span class="logo">
+        <img
+          class="logo-mark logo-mark--lg"
+          src="/logos/redhat_no_bg.png"
+          alt="Midway Wrestling Club red hat logo"
+          width="56"
+          height="56"
+          loading="lazy"
+          decoding="async"
+        />
+        Midway Wrestling Club
+      </span>
+      <p class="muted">
+        Competitive, confidence-building training in a focused and supportive
+        room.
+      </p>
+    </div>
+    <div class="stack">
+      <p class="eyebrow">Navigate</p>
+      <nav class="footer-links" aria-label="Footer">
+        {navLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+    </div>
+    <div class="stack">
+      <p class="eyebrow">Social</p>
+      <div class="footer-social">
+        {socialLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </div>
+      <p class="muted">@midwaywrestling (placeholder)</p>
+    </div>
+  </div>
+</footer>

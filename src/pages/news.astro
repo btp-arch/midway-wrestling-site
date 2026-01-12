@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+import { getCollection } from "astro:content";
+
+const news = await getCollection("news");
+const sortedNews = news.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const formatDate = (date) =>
+  date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+---
+
+<BaseLayout
+  title="News | Midway Wrestling Club"
+  description="Club news, event updates, and announcements for Midway Wrestling Club."
+>
+  <Section
+    eyebrow="News"
+    title="Club news and updates"
+    intro="Announcements, event recaps, and upcoming opportunities."
+  >
+    <div class="grid grid-2 grid-3">
+      {sortedNews.map((entry) => (
+        <Card
+          meta={formatDate(entry.data.date)}
+          title={entry.data.title}
+          description={entry.data.excerpt}
+        >
+          {entry.data.cover && (
+            <img
+              slot="media"
+              class="card-media__img"
+              src={entry.data.cover}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          <a class="btn outline" href={`/news/${entry.slug}`}>Read Article</a>
+        </Card>
+      ))}
+    </div>
+  </Section>
+
+  <Section
+    eyebrow="Stay in the loop"
+    title="Want news in your inbox?"
+    intro="Join updates for schedule changes and announcements."
+  >
+    <CTAButtons
+      primaryLabel="Call/Text Coach"
+      primaryHref="tel:+15551234567"
+      secondaryLabel="Join Updates"
+      secondaryHref="/join"
+      secondaryVariant="outline"
+    />
+  </Section>
+</BaseLayout>

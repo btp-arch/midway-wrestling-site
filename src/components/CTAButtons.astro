@@ -1,0 +1,13 @@
+---
+const {
+  primaryLabel = "Call/Text Coach",
+  primaryHref = "tel:+15551234567",
+  secondaryLabel = "Join Updates",
+  secondaryHref = "/join",
+  secondaryVariant = "secondary",
+} = Astro.props;
+---
+<div class="cta-group">
+  <a class="btn primary" href={primaryHref}>{primaryLabel}</a>
+  <a class={`btn ${secondaryVariant}`} href={secondaryHref}>{secondaryLabel}</a>
+</div>

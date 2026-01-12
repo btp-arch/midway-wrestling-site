@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import FAQAccordion from "../components/FAQAccordion.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+
+const faqItems = [
+  {
+    question: "Is this for beginners?",
+    answer:
+      "Yes. We group athletes by experience and teach fundamentals before live wrestling.",
+  },
+  {
+    question: "What gear do I need?",
+    answer:
+      "Wrestling shoes, athletic clothing, and a water bottle. Headgear is optional at first (placeholder).",
+  },
+  {
+    question: "How do I sign up?",
+    answer:
+      "Call or text the coach and we will confirm the best group and first practice date.",
+  },
+  {
+    question: "Can parents watch?",
+    answer:
+      "Yes, there is a designated viewing area in the gym (placeholder).",
+  },
+  {
+    question: "How often are practices?",
+    answer:
+      "Most athletes attend 2-3 nights per week depending on age and schedule.",
+  },
+];
+---
+
+<BaseLayout
+  title="FAQ | Midway Wrestling Club"
+  description="Frequently asked questions about practice, gear, and joining Midway Wrestling Club."
+>
+  <Section
+    eyebrow="FAQ"
+    title="Questions, answered"
+    intro="Quick answers for parents and athletes."
+  >
+    <FAQAccordion items={faqItems} baseId="faq-main" />
+  </Section>
+
+  <Section
+    eyebrow="Contact"
+    title="Still deciding?"
+    intro="Text or call any time for clarification on schedules, pricing, or skill level."
+  >
+    <CTAButtons
+      primaryLabel="Call/Text Coach"
+      primaryHref="tel:+15551234567"
+      secondaryLabel="Join Updates"
+      secondaryHref="/join"
+      secondaryVariant="outline"
+    />
+  </Section>
+</BaseLayout>
