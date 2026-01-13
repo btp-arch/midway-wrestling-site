@@ -1,17 +1,16 @@
 ---
-title: "Registration Reminder + USAW Card"
-excerpt: "Quick reminder on how to register and secure your USAW card before the first week."
-date: 2024-08-20
-author: "Coach Reyes"
+title: "USA Wrestling Card Reminder"
+excerpt: "Quick reminder to renew USA Wrestling athlete memberships before the first week of practice."
+date: 2025-10-01
+author: "Coach Pipher"
 tags:
   - registration
   - parents
 ---
-If you are joining us for the new season, please complete registration and the USAW card before your first week. This helps us keep practices safe and organized.
+Parents and wrestlers, make sure that all who will be participating in club practice have an up to date USA Wrestling membership before starting. This is for insurance purposes for your wrestler and the school that allows us to utilize their facilities. USA Wrestling Memberships typically need to be renewed each year after the 1st of September.
 
 Checklist:
-- Confirm athlete name and age group
-- Complete the USAW membership online
-- Send a text to the head coach once finished
+- Active USA Wrestling Membership
+- Notified coach via text/call/email that your wrestler(s) will be at the first week of practice
 
-Need help? Text or call and we will walk you through it.
+Need help? Text or call coach.

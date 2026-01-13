@@ -126,6 +126,34 @@ main {
   color: var(--color-accent);
 }
 
+.eyebrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-accent);
+  background: rgba(255, 49, 49, 0.08);
+  color: var(--color-accent);
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.eyebrow-link__icon {
+  font-size: 0.8rem;
+}
+
+.eyebrow-link:hover,
+.eyebrow-link:focus-visible {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #0b0b0b;
+  transform: translateY(-1px);
+}
+
 h1,
 h2,
 h3 {

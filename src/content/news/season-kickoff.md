@@ -1,17 +1,18 @@
 ---
-title: "Season Kickoff Open Mat"
-excerpt: "Join us for a free open mat to meet the coaches and learn what practice feels like."
-date: 2024-10-02
-author: "Coach Taylor"
+title: "2025/26 Season to Start October 13th"
+excerpt: "Mark your calendar: the 2025/26 season begins October 13th at Delta Middle School."
+date: 2025-08-01
+author: "Coach Pipher"
 tags:
   - events
   - open mat
 ---
-We are opening the season with a free open mat for new and returning athletes. Come tour the room, ask questions, and get a short skills assessment so we can place your wrestler in the right group.
+We are excited to kick off the 2025/26 season on Monday, October 13th. Practices will run on Monday and Wednesday evenings at Delta Middle School.
 
-What to expect:
-- Coach introductions and safety overview
-- Short warm-up and movement drills
-- Optional live goes for returning athletes
+Key details:
+- Start date: October 13th
+- Practice nights: Monday & Wednesday
+- Time: 6:30-7:45pm
+- Location: Delta Middle School
 
-Bring wrestling shoes, a water bottle, and athletic clothing. Parents are welcome to watch from the designated area.
+Please make sure your athlete has an active USA Wrestling membership before the first practice. Text or call the coach with any questions.
