@@ -3,6 +3,8 @@ title: "2025/26 Season to Start October 13th"
 excerpt: "Mark your calendar: the 2025/26 season begins October 13th at Delta Middle School."
 date: 2025-08-01
 author: "Coach Pipher"
+cover: "/logos/redhat_no_bg.png"
+coverStyle: "logo"
 tags:
   - events
   - open mat

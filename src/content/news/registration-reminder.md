@@ -3,6 +3,7 @@ title: "USA Wrestling Card Reminder"
 excerpt: "Quick reminder to renew USA Wrestling athlete memberships before the first week of practice."
 date: 2025-10-01
 author: "Coach Pipher"
+cover: "/news/usa26.jpg"
 tags:
   - registration
   - parents

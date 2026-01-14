@@ -3,6 +3,7 @@ title: "Holiday Practice Schedule"
 excerpt: "Key November and December holiday adjustments for club practice nights."
 date: 2025-11-01
 author: "Coach Pipher"
+cover: "/news/holiday.png"
 tags:
   - schedule
   - holidays

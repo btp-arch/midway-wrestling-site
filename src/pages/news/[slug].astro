@@ -37,15 +37,28 @@ const formattedDate = entry.data.date.toLocaleDateString("en-US", {
         <span>{formattedDate}</span>
         {entry.data.author && <span>{entry.data.author}</span>}
       </div>
-      {entry.data.cover && (
-        <img
-          class="article-cover"
-          src={entry.data.cover}
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-      )}
+      {entry.data.cover &&
+        (entry.data.coverStyle === "logo" ? (
+          <div class="article-cover-frame article-cover-frame--logo">
+            <img
+              class="article-cover__img article-cover__img--logo"
+              src={entry.data.cover}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <div class="article-cover-frame">
+            <img
+              class="article-cover__img"
+              src={entry.data.cover}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
       <div class="article-content">
         <Content />
       </div>
