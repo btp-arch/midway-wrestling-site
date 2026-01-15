@@ -1,0 +1,219 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+---
+
+<BaseLayout
+  title="Beginner Interest | Midway Wrestling Club"
+  description="Share interest for the 2026/2027 beginner group at Midway Wrestling Club."
+>
+  <Section
+    eyebrow="Interest Form"
+    title="2026/2027 Beginner Group Interest Form"
+    intro="Please fill out this form if you are interested in an additional, more beginner-focused practice session for the 2026/2027 season."
+  >
+    <div class="grid">
+      <div class="stack" data-form-wrapper>
+        <form
+          class="form-card"
+          name="beginner-interest-form"
+          method="post"
+          action="https://formspree.io/f/xpqqwpde"
+          data-formspree
+          data-success-message="Thank you for your input for the 2026/2027 season."
+        >
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="bi-parent-name">Parent Name</label>
+              <input
+                id="bi-parent-name"
+                name="parent-name"
+                type="text"
+                autocomplete="name"
+                placeholder="Full name"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="bi-parent-email">Parent Email</label>
+              <input
+                id="bi-parent-email"
+                name="parent-email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@email.com"
+                required
+              />
+            </div>
+          </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="bi-parent-phone">Parent Phone Number</label>
+              <input
+                id="bi-parent-phone"
+                name="parent-phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="(555) 123-4567"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="bi-wrestler-ages">Wrestler(s) age(s)</label>
+              <input
+                id="bi-wrestler-ages"
+                name="wrestler-ages"
+                type="text"
+                placeholder="e.g., 9, 12"
+                required
+              />
+            </div>
+          </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="bi-experience">Wrestler(s) year(s) experience</label>
+              <input
+                id="bi-experience"
+                name="wrestler-experience"
+                type="text"
+                placeholder="e.g., 0-1, 2-3"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="bi-start-month">Preferred starting month</label>
+              <input
+                id="bi-start-month"
+                name="preferred-start-month"
+                type="text"
+                placeholder="e.g., November 2026"
+                required
+              />
+            </div>
+          </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="bi-time">Preferred time of practice</label>
+              <input
+                id="bi-time"
+                name="preferred-time"
+                type="text"
+                placeholder="e.g., 5:30-6:30pm"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="bi-days">Preferred days of the week</label>
+              <input
+                id="bi-days"
+                name="preferred-days"
+                type="text"
+                placeholder="e.g., Mon/Wed"
+                required
+              />
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Submit Interest</button>
+        </form>
+        <div class="form-card form-error" data-form-error role="alert" hidden>
+          Something went wrong. Please try again.
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <div class="modal" data-modal hidden>
+    <button class="modal__overlay" type="button" data-modal-close aria-hidden="true"></button>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <p class="modal__title" id="modal-title">Message sent</p>
+      <p class="modal__message" data-modal-message></p>
+      <button class="btn secondary" type="button" data-modal-close>Close</button>
+    </div>
+  </div>
+
+  <script is:inline>
+    const wrapper = document.querySelector("[data-form-wrapper]");
+    const modal = document.querySelector("[data-modal]");
+    const modalMessage = modal?.querySelector("[data-modal-message]");
+
+    const openModal = (message) => {
+      if (!modal || !modalMessage) return;
+      modalMessage.textContent = message;
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      const closeButton = modal.querySelector("[data-modal-close]");
+      if (closeButton) closeButton.focus();
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+    };
+
+    if (modal) {
+      modal.addEventListener("click", (event) => {
+        if (event.target.closest("[data-modal-close]")) {
+          closeModal();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal && !modal.hidden) {
+        closeModal();
+      }
+    });
+
+    if (wrapper) {
+      const form = wrapper.querySelector("form[data-formspree]");
+      const error = wrapper.querySelector("[data-form-error]");
+      if (form) {
+        const showError = () => {
+          if (!error) return;
+          error.hidden = false;
+          window.setTimeout(() => {
+            error.hidden = true;
+          }, 4000);
+        };
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalLabel = submitButton?.textContent;
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+          }
+
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            });
+            if (response.ok) {
+              form.reset();
+              if (error) error.hidden = true;
+              openModal(form.dataset.successMessage || "Thanks for your message.");
+            } else {
+              showError();
+            }
+          } catch (err) {
+            showError();
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalLabel || "Submit";
+            }
+          }
+        });
+      }
+    }
+  </script>
+</BaseLayout>

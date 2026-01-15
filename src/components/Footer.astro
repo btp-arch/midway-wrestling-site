@@ -8,11 +8,7 @@ const navLinks = [
   { href: "/join", label: "Join" },
 ];
 
-const socialLinks = [
-  { href: "#", label: "Instagram" },
-  { href: "#", label: "Facebook" },
-  { href: "#", label: "YouTube" },
-];
+const facebookLink = "https://www.facebook.com/share/184nobE311/?mibextid=wwXIfr";
 ---
 <footer class="footer">
   <div class="container footer-grid">
@@ -54,12 +50,23 @@ const socialLinks = [
     </div>
     <div class="stack">
       <p class="eyebrow">Social</p>
-      <div class="footer-social">
-        {socialLinks.map((link) => (
-          <a href={link.href}>{link.label}</a>
-        ))}
-      </div>
-      <p class="muted">@midwaywrestling</p>
+      <a class="facebook-preview" href={facebookLink} aria-label="Visit Midway Wrestling Club on Facebook">
+        <div class="facebook-preview__header">
+          <img
+            class="facebook-preview__avatar"
+            src="/logos/redhat_no_bg.png"
+            alt=""
+            width="36"
+            height="36"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <p class="facebook-preview__title">Midway Wrestling Club</p>
+            <p class="facebook-preview__meta">Follow on Facebook</p>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </footer>
