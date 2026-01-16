@@ -5,7 +5,7 @@ import Card from "../components/Card.astro";
 import CTAButtons from "../components/CTAButtons.astro";
 import { getCollection } from "astro:content";
 
-const news = await getCollection("news");
+const news = await getCollection("news", ({ data }) => !data.draft);
 const sortedNews = news.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
@@ -90,7 +90,7 @@ const formatDate = (date) =>
       primaryLabel="Call/Text Coach"
       primaryHref="tel:+19704242757"
       secondaryLabel="Join Updates"
-      secondaryHref="/join"
+      secondaryHref="/membership"
       secondaryVariant="outline"
     />
   </Section>

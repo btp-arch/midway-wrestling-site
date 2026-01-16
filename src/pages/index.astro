@@ -6,7 +6,7 @@ import Card from "../components/Card.astro";
 import { getCollection } from "astro:content";
 import { readdir } from "node:fs/promises";
 
-const news = await getCollection("news");
+const news = await getCollection("news", ({ data }) => !data.draft);
 const latestNews = news
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
@@ -19,15 +19,35 @@ const formatDate = (date) =>
 
 const photosDir = new URL("../../public/photos", import.meta.url);
 const photoFiles = await readdir(photosDir);
-const photoItems = photoFiles
+const preferredSecondPhoto =
+  "att.iqUvz-v_6cK8DuqVptdM4qc9wlV9rYeiMqW88qIV3eE.JPG";
+const lastThreePhotos = [
+  "att.FHNdpy1YXN-bfQALqMoeoI6O9w3xdC3lecFQm9nHT3s.JPG",
+  "att.oUY_7WvBNBO4c1aExVRiA1yzeGa8I8WO5B_jLm9Nf0c.JPG",
+  "att.aChdqMWp4-PwMFzCRtDG6muZbyAnO88gH2PGxnRjDMo.JPG",
+];
+const orderedPhotoFiles = photoFiles
   .filter((file) => /\.(png|jpe?g|webp|gif|avif)$/i.test(file))
-  .map((file) => {
-    const label = file.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").trim();
-    return {
-      src: `/photos/${file}`,
-      alt: label ? `${label} photo` : "Midway Wrestling Club photo",
-    };
-  });
+  .sort((a, b) => a.localeCompare(b, "en", { numeric: true, sensitivity: "base" }));
+const lastThreeSet = new Set(lastThreePhotos);
+const basePhotos = orderedPhotoFiles.filter(
+  (file) => file !== preferredSecondPhoto && !lastThreeSet.has(file)
+);
+const preferredExists = orderedPhotoFiles.includes(preferredSecondPhoto);
+if (preferredExists) {
+  basePhotos.splice(1, 0, preferredSecondPhoto);
+}
+const resolvedLastThree = lastThreePhotos.filter((file) =>
+  orderedPhotoFiles.includes(file)
+);
+const finalPhotoFiles = basePhotos.concat(resolvedLastThree);
+const photoItems = finalPhotoFiles.map((file) => {
+  const label = file.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").trim();
+  return {
+    src: `/photos/${file}`,
+    alt: label ? `${label} photo` : "Midway Wrestling Club photo",
+  };
+});
 const placeholderPhotos = [
   { label: "Live goes" },
   { label: "Technique reps" },
@@ -47,7 +67,7 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
     primaryLabel="Call/Text Coach"
     primaryHref="tel:+19704242757"
     secondaryLabel="Join Updates"
-    secondaryHref="/join"
+    secondaryHref="/membership"
     showCtas={false}
   >
     <div slot="below-title" class="hero-photos">
@@ -91,7 +111,7 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
         <img
           slot="media"
           class="hero-logo"
-          src="/logos/combo_no_bg.png"
+          src="/logos/combo%20updated%20logo.png"
           alt="Midway Wrestling Club logo"
           width="220"
           height="220"

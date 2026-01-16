@@ -515,6 +515,26 @@ h3 {
   box-shadow: 0 16px 40px rgba(255, 49, 49, 0.15);
 }
 
+.membership-support__help {
+  order: 2;
+}
+
+.membership-support__updates {
+  order: 1;
+}
+
+.membership-grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.membership-grid .card-actions {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-start;
+}
+
 .hero-card-cta-wrap {
   display: flex;
   justify-content: center;
@@ -623,6 +643,11 @@ h3 {
 .note {
   font-size: 0.9rem;
   color: var(--color-muted);
+}
+
+.note--tiny {
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
 }
 
 .site-header {
@@ -1296,6 +1321,11 @@ textarea {
 
   .footer-cta .btn {
     width: auto;
+  }
+
+  .membership-support__help,
+  .membership-support__updates {
+    order: 0;
   }
 }
 

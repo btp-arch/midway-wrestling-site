@@ -1,0 +1,323 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import CTAButtons from "../components/CTAButtons.astro";
+
+const monthlyLink = "https://buy.stripe.com/00w5kFc1aaQMe7i2VD1Fe01";
+const dropInLink = "https://buy.stripe.com/eVqaEZghq9MI9R20Nv1Fe00";
+const portalLink = "https://billing.stripe.com/p/login/eVqaEZghq9MI9R20Nv1Fe00";
+const showJoinForm = false;
+---
+
+<BaseLayout
+  title="Membership | Midway Wrestling Club"
+  description="Purchase drop-in sessions or monthly membership for Midway Wrestling Club."
+>
+  <Section
+    eyebrow="Membership"
+    title="Choose a plan"
+    intro="Secure payment through Stripe. Select quantity for multiple wrestlers during checkout. *Sibling discounts applied automatically."
+  >
+    <div class="grid grid-2 grid-3 membership-grid">
+      <Card
+        title="Drop-in"
+        description="Single practice session."
+      >
+        <p class="muted">$20 per practice.</p>
+        <div class="card-actions">
+          <a
+            class="btn outline"
+            href={dropInLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pay Drop-in
+          </a>
+        </div>
+      </Card>
+      <Card
+        accent
+        title="Monthly Membership"
+        description="Ongoing access for the season."
+      >
+        <p class="muted">$80 per month.</p>
+        <div class="card-actions">
+          <a
+            class="btn outline"
+            href={monthlyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Start Monthly
+          </a>
+        </div>
+      </Card>
+      <Card
+        title="Manage Membership"
+        description="Update payment method or cancel anytime."
+      >
+        <div class="card-actions">
+          <a
+            class="btn outline"
+            href={portalLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Manage Membership
+          </a>
+        </div>
+      </Card>
+    </div>
+  </Section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 membership-support">
+        <div class="membership-support__help">
+          <div class="section-header">
+            <p class="eyebrow">Need help?</p>
+            <h2>Questions before you pay?</h2>
+            <p class="lead">Text or call and we will help you choose the right option.</p>
+          </div>
+          <div class="section-content">
+            <a
+              class="btn primary btn-flip"
+              href="tel:+19704242757"
+              aria-label="Call/Text Coach at 970-424-2757"
+              data-call-button="true"
+            >
+              <span class="btn-flip-inner" aria-hidden="true">
+                <span class="btn-face btn-face--front">Call/Text Coach</span>
+                <span class="btn-face btn-face--back">970-424-2757</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="membership-support__updates" data-form-wrapper>
+          <div class="section-header">
+            <p class="eyebrow">Email Updates/Club News</p>
+            <h2>Get schedule changes and event reminders.</h2>
+          </div>
+          <div class="section-content">
+            <form
+              class="form-card"
+              name="updates-form"
+              method="post"
+              action="https://formspree.io/f/meeeoova"
+              data-formspree
+              data-success-message="You are signed up to receive email updates about the club and practice cancellations/updates."
+            >
+              <div class="form-row">
+                <div class="field">
+                  <label for="updates-email">Email</label>
+                  <input
+                    id="updates-email"
+                    name="email"
+                    type="email"
+                    placeholder="you@email.com"
+                    required
+                  />
+                </div>
+                <button class="btn secondary" type="submit">Join Updates</button>
+              </div>
+              <p class="note">We will only send wrestling club updates.</p>
+            </form>
+            <div class="form-card form-error" data-form-error role="alert" hidden>
+              Something went wrong. Please try again.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {showJoinForm && (
+    <Section
+      eyebrow="Additional Info"
+      title="Still unsure what option or if Midway is right for your wrestler(s)?"
+      intro="Send a quick note and we will follow up with the best practice option."
+    >
+      <div class="grid grid-2">
+        <div class="stack" data-form-wrapper>
+          <form
+            class="form-card"
+            name="join-form"
+            method="post"
+            action="https://formspree.io/f/mldznlgw"
+            data-formspree
+            data-success-message="Thanks for submitting a request to join Midway Wrestling Club. A coach will reach out shortly with additional information."
+          >
+            <div class="grid grid-2">
+              <div class="field">
+                <label for="join-name">Parent/Guardian Name</label>
+                <input
+                  id="join-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Full name"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="join-email">Email</label>
+                <input
+                  id="join-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@email.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="grid grid-2">
+              <div class="field">
+                <label for="join-phone">Phone</label>
+                <input
+                  id="join-phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="(555) 123-4567"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="join-age">Athlete Age</label>
+                <input
+                  id="join-age"
+                  name="athlete-age"
+                  type="text"
+                  placeholder="e.g., 10"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label for="join-message">Message</label>
+              <textarea
+                id="join-message"
+                name="message"
+                placeholder="Tell us about your wrestlers experience, weight class/range, and when they can start. Also any questions you may have."
+                required
+              ></textarea>
+            </div>
+            <button class="btn primary" type="submit">Send Message</button>
+          </form>
+          <div class="form-card form-error" data-form-error role="alert" hidden>
+            Something went wrong. Please try again or text the coach directly.
+          </div>
+        </div>
+
+        <div class="stack">
+          <Card title="Prefer to talk first?" description="Call or text the head coach for a quick answer.">
+            <CTAButtons
+              primaryLabel="Call/Text Coach"
+              primaryHref="tel:+19704242757"
+              secondaryLabel="View Schedule"
+              secondaryHref="/schedule"
+              secondaryVariant="outline"
+            />
+          </Card>
+        </div>
+      </div>
+    </Section>
+  )}
+
+  <div class="modal" data-modal hidden>
+    <button class="modal__overlay" type="button" data-modal-close aria-hidden="true"></button>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <p class="modal__title" id="modal-title">Message sent</p>
+      <p class="modal__message" data-modal-message></p>
+      <button class="btn secondary" type="button" data-modal-close>Close</button>
+    </div>
+  </div>
+
+  <script is:inline>
+    const wrappers = document.querySelectorAll("[data-form-wrapper]");
+    const modal = document.querySelector("[data-modal]");
+    const modalMessage = modal?.querySelector("[data-modal-message]");
+
+    const openModal = (message) => {
+      if (!modal || !modalMessage) return;
+      modalMessage.textContent = message;
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+      const closeButton = modal.querySelector("[data-modal-close]");
+      if (closeButton) closeButton.focus();
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+    };
+
+    if (modal) {
+      modal.addEventListener("click", (event) => {
+        if (event.target.closest("[data-modal-close]")) {
+          closeModal();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal && !modal.hidden) {
+        closeModal();
+      }
+    });
+
+    wrappers.forEach((wrapper) => {
+      const form = wrapper.querySelector("form[data-formspree]");
+      const error = wrapper.querySelector("[data-form-error]");
+      if (!form) return;
+
+      const showError = () => {
+        if (!error) return;
+        error.hidden = false;
+        window.setTimeout(() => {
+          error.hidden = true;
+        }, 4000);
+      };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalLabel = submitButton?.textContent;
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Sending...";
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+          });
+          if (response.ok) {
+            form.reset();
+            if (error) error.hidden = true;
+            openModal(form.dataset.successMessage || "Thanks for your message.");
+          } else {
+            showError();
+          }
+        } catch (err) {
+          showError();
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalLabel || "Submit";
+          }
+        }
+      });
+    });
+  </script>
+</BaseLayout>

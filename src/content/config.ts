@@ -9,6 +9,7 @@ const newsCollection = defineCollection({
     author: z.string().optional(),
     cover: z.string().optional(),
     coverStyle: z.enum(["logo"]).optional(),
+    draft: z.boolean().optional(),
     tags: z.array(z.string()).optional(),
   }),
 });

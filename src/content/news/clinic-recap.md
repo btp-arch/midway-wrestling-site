@@ -3,7 +3,7 @@ title: "Free Club Practices for the Month of October"
 excerpt: "Practice with us all October at no cost as we open the season."
 date: 2025-09-20
 author: "Coach Pipher"
-cover: "/logos/shield_no_bg.png"
+cover: "/logos/shield%20logo%20updated.png"
 coverStyle: "logo"
 tags:
   - clinic

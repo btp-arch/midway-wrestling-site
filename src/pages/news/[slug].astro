@@ -5,7 +5,7 @@ import CTAButtons from "../../components/CTAButtons.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("news");
+  const entries = await getCollection("news", ({ data }) => !data.draft);
   return entries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -74,7 +74,7 @@ const formattedDate = entry.data.date.toLocaleDateString("en-US", {
       primaryLabel="Call/Text Coach"
       primaryHref="tel:+19704242757"
       secondaryLabel="Join Updates"
-      secondaryHref="/join"
+      secondaryHref="/membership"
       secondaryVariant="outline"
     />
   </Section>
