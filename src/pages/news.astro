@@ -64,19 +64,7 @@ const buildArticleUrl = (slug) => new URL(`/news/${slug}`, siteUrl).toString();
                     />
                   </div>
                 ))}
-              <div class="news-actions">
-                <a class="btn outline" href={`/news/${entry.slug}`}>Read Article</a>
-                <button
-                  class="btn outline btn-share"
-                  type="button"
-                  data-share-url={articleUrl}
-                  data-share-title={entry.data.title}
-                  data-share-text={entry.data.excerpt}
-                  aria-label={`Share ${entry.data.title}`}
-                >
-                  Share
-                </button>
-              </div>
+              <a class="btn outline" href={`/news/${entry.slug}`}>Read Article</a>
             </Card>
           </div>
         );

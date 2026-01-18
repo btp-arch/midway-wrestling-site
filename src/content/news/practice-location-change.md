@@ -4,7 +4,7 @@ excerpt: "Practice will move from Delta Middle School to the Delta High School w
 date: 2026-01-15
 author: "Coach Pipher"
 cover: "/news/location%20and%20time%20change.png"
-draft: true
+draft: false
 tags:
   - schedule
   - location
