@@ -18,6 +18,7 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0b0b0b" />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -26,6 +27,9 @@ const {
       <slot />
     </main>
     <Footer />
+    <div class="toast" data-toast role="status" aria-live="polite" hidden>
+      <span data-toast-message>Link copied.</span>
+    </div>
     <script is:inline>
       const callLinks = document.querySelectorAll("[data-call-button]");
       const canCall = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
@@ -34,6 +38,74 @@ const {
         callLinks.forEach((link) => {
           link.addEventListener("click", (event) => {
             event.preventDefault();
+          });
+        });
+      }
+
+      const shareButtons = document.querySelectorAll("[data-share-url]");
+      const toast = document.querySelector("[data-toast]");
+      const toastMessage = toast?.querySelector("[data-toast-message]");
+      let toastTimeout;
+
+      if (shareButtons.length) {
+        const showToast = (message) => {
+          if (!toast) return;
+          if (toastMessage) toastMessage.textContent = message;
+          toast.hidden = false;
+          toast.classList.add("is-visible");
+          window.clearTimeout(toastTimeout);
+          toastTimeout = window.setTimeout(() => {
+            toast.classList.remove("is-visible");
+            toast.hidden = true;
+          }, 3000);
+        };
+
+        const copyToClipboard = async (value) => {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(value);
+            return true;
+          }
+          const textarea = document.createElement("textarea");
+          textarea.value = value;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "absolute";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand("copy");
+          document.body.removeChild(textarea);
+          return copied;
+        };
+
+        shareButtons.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const url = button.getAttribute("data-share-url");
+            if (!url) return;
+            const title = button.getAttribute("data-share-title") || undefined;
+            const text = button.getAttribute("data-share-text") || undefined;
+            const shareData = { url };
+            if (title) shareData.title = title;
+            if (text) shareData.text = text;
+
+            if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+              try {
+                await navigator.share(shareData);
+                return;
+              } catch (err) {
+                if (err && err.name === "AbortError") return;
+              }
+            }
+            try {
+              const copied = await copyToClipboard(url);
+              if (copied) {
+                showToast("Link copied.");
+              } else {
+                window.prompt("Copy this link:", url);
+              }
+            } catch (err) {
+              window.prompt("Copy this link:", url);
+            }
           });
         });
       }
