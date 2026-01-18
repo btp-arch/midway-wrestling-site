@@ -127,7 +127,7 @@ const noPracticeDates = new Set([
                   const isPractice =
                     (dayIndex === 1 || dayIndex === 3) && !noPracticeDates.has(dateKey);
                   const label = isPractice
-                    ? "Practice, 6:30-7:45pm, Delta Middle School"
+                    ? "Practice, 6:45-8:00pm, Delta High School"
                     : null;
                   return (
                     <span
@@ -162,23 +162,12 @@ const noPracticeDates = new Set([
             decoding="async"
           />
         </span>
+        <span class="calendar-legend__equals" aria-hidden="true">=</span>
         <p class="calendar-legend__text">
-          Practice <span aria-hidden="true">•</span> 6:30-7:45pm{" "}
-          <span aria-hidden="true">•</span> Delta Middle School
+          Practice <span aria-hidden="true">•</span> 6:45-8:00pm{" "}
+          <span aria-hidden="true">•</span> Delta High School
         </p>
       </div>
-    </div>
-  </Section>
-
-  <Section
-    eyebrow="Pricing"
-    title="Membership options"
-    intro="Choose the plan that fits your season."
-  >
-    <div class="grid grid-2 grid-3">
-      <Card title="Drop-in" description="$20 per session." />
-      <Card title="Monthly" description="$80 per month." />
-      <Card title="Season" description="Available Fall 2026" />
     </div>
   </Section>
 

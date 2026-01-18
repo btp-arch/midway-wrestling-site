@@ -9,7 +9,7 @@ tags:
   - schedule
   - location
 ---
-Practice will move from the Delta Middle School to the Delta High School wrestling room. Practice time will be 6:45-8:00pm.
+Practice will move from the Delta Middle School to the Delta High School wrestling room. Practice time will be 6:45-8:00pm starting Monday January 19th, 2026.
 
 New location:
 - Delta High School Wrestling Room

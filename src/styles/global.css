@@ -510,6 +510,11 @@ h3 {
   margin: 0;
 }
 
+.calendar-legend__equals {
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
 .card-accent {
   border-color: rgba(255, 49, 49, 0.4);
   box-shadow: 0 16px 40px rgba(255, 49, 49, 0.15);
@@ -1362,7 +1367,7 @@ textarea {
   }
 
   .footer-cta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     align-items: center;
   }
 
@@ -1379,6 +1384,15 @@ textarea {
 @media (min-width: 900px) {
   .grid-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-cta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-cta .btn {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.78rem;
   }
 
   .hero-logo {
