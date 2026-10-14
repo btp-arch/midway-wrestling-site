@@ -6,11 +6,6 @@ const navLinks = [
   { href: "/faq", label: "FAQ" },
   { href: "/news", label: "News" },
   { href: "/membership", label: "Membership" },
-  {
-    href: "https://midway-wrestling-club.printify.me/",
-    label: "Merch Store",
-    external: true,
-  },
 ];
 ---
 <header class="site-header">
@@ -29,13 +24,7 @@ const navLinks = [
     </a>
     <nav class="nav-links" aria-label="Primary">
       {navLinks.map((link) => (
-        <a
-          href={link.href}
-          target={link.external ? "_blank" : undefined}
-          rel={link.external ? "noopener noreferrer" : undefined}
-        >
-          {link.label}
-        </a>
+        <a href={link.href}>{link.label}</a>
       ))}
     </nav>
     <button
@@ -83,13 +72,7 @@ const navLinks = [
     </div>
     <nav class="mobile-menu__links" aria-label="Mobile">
       {navLinks.map((link) => (
-        <a
-          href={link.href}
-          target={link.external ? "_blank" : undefined}
-          rel={link.external ? "noopener noreferrer" : undefined}
-        >
-          {link.label}
-        </a>
+        <a href={link.href}>{link.label}</a>
       ))}
     </nav>
   </div>
