@@ -1,6 +1,6 @@
 ---
-title: "2026 Club Practices Begin October 7"
-excerpt: "Midway Wrestling Club returns to the mat Wednesday, October 7 at North Fork High School."
+title: "2026 Club Practices Begin October 7th"
+excerpt: "Midway Wrestling Club returns to the mat Wednesday, October 7th at North Fork High School."
 date: 2026-10-05
 author: "Coach Pipher"
 cover: "/logos/shield%20logo%20updated.png"
@@ -10,10 +10,10 @@ tags:
   - practice
   - season
 ---
-Midway Wrestling Club practices begin Wednesday, October 7. We are excited to get everyone back on the mat for the 2026 season.
+Midway Wrestling Club practices begin Wednesday, October 7th. We are excited to get everyone back on the mat for the 2026 season.
 
 Practice details:
-- **Start date:** Wednesday, October 7
+- **Start date:** Wednesday, October 7th
 - **Practice nights:** Mondays and Wednesdays
 - **Time:** 6:45-8:00 PM
 - **October location:** North Fork High School
