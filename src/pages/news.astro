@@ -34,6 +34,7 @@ const buildArticleUrl = (slug) => new URL(`/news/${slug}`, siteUrl).toString();
     <div class="grid grid-2 grid-3 news-grid">
       {sortedNews.map((entry, index) => {
         const isLogoCover = entry.data.coverStyle === "logo";
+        const isUsaWrestlingLogo = entry.data.cover?.includes("usa-wrestling-logo");
         const articleUrl = buildArticleUrl(entry.slug);
         return (
           <div class="news-item" data-news-card>
@@ -46,7 +47,7 @@ const buildArticleUrl = (slug) => new URL(`/news/${slug}`, siteUrl).toString();
                 (isLogoCover ? (
                   <div slot="media" class="card-media__frame card-media__frame--logo">
                     <img
-                      class="card-media__logo"
+                      class={`card-media__logo${isUsaWrestlingLogo ? " card-media__logo--usa" : ""}`}
                       src={entry.data.cover}
                       alt=""
                       loading="lazy"
@@ -85,15 +86,15 @@ const buildArticleUrl = (slug) => new URL(`/news/${slug}`, siteUrl).toString();
   </Section>
 
   <Section
-    eyebrow="Stay in the loop"
-    title="Want news in your inbox?"
-    intro="Join updates for schedule changes and announcements."
+    eyebrow="Questions?"
+    title="Ask about club news"
+    intro="Contact the coach for schedule changes and announcements."
   >
     <CTAButtons
       primaryLabel="Call/Text Coach"
       primaryHref="tel:+19704242757"
-      secondaryLabel="Join Updates"
-      secondaryHref="/membership"
+      secondaryLabel="Email Coach"
+      secondaryHref="mailto:Midwaywrestlingclub@gmail.com"
       secondaryVariant="outline"
     />
   </Section>

@@ -55,6 +55,7 @@ const placeholderPhotos = [
   { label: "Tournament day" },
 ];
 const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
+const facebookLink = "https://www.facebook.com/share/184nobE311/?mibextid=wwXIfr";
 ---
 
 <BaseLayout
@@ -64,10 +65,6 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
   <Hero
     title="Midway Wrestling Club"
     subtitle="Midway wrestlers in action."
-    primaryLabel="Call/Text Coach"
-    primaryHref="tel:+19704242757"
-    secondaryLabel="Join Updates"
-    secondaryHref="/membership"
     showCtas={false}
   >
     <div slot="below-title" class="hero-photos">
@@ -104,9 +101,9 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
     <div slot="aside">
       <Card
         accent
-        meta="Beginner Interest"
-        title="2026/2027 Beginner Group Interest Form"
-        description="Please fill out this form if you are interested in an additional, more beginner-focused practice session for the 2026/2027 season."
+        meta="New to Midway?"
+        title="Questions about joining?"
+        description="Message the Midway Wrestling Club Facebook page to see if Midway practices are right for your wrestler."
       >
         <img
           slot="media"
@@ -119,7 +116,12 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
           decoding="async"
         />
         <div class="hero-card-cta-wrap">
-          <a class="btn primary hero-card-cta" href="/beginner-interest">Open Interest Form</a>
+          <a
+            class="btn primary hero-card-cta"
+            href={facebookLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >Message on Facebook</a>
         </div>
       </Card>
     </div>
@@ -144,12 +146,12 @@ const displayPhotos = photoItems.length ? photoItems : placeholderPhotos;
       />
       <Card
         meta="Location"
-        title="Delta High School"
-        description="1400 Pioneer Rd, Delta, CO 81416."
+        title="October: North Fork High School"
+        description="November & December: Delta High School."
       />
       <Card
         meta="Cost"
-        title="$80/month"
+        title="$100/month"
         description="Sibling/Family discounts available"
       />
     </div>

@@ -20,6 +20,7 @@ const articleUrl = new URL(`/news/${entry.slug}`, siteUrl).toString();
 const ogImage = entry.data.cover
   ? new URL(entry.data.cover, siteUrl).toString()
   : new URL("/logos/combo%20updated%20logo.png", siteUrl).toString();
+const isUsaWrestlingLogo = entry.data.cover?.includes("usa-wrestling-logo");
 
 const formattedDate = entry.data.date.toLocaleDateString("en-US", {
   month: "long",
@@ -69,7 +70,7 @@ const formattedDate = entry.data.date.toLocaleDateString("en-US", {
         (entry.data.coverStyle === "logo" ? (
           <div class="article-cover-frame article-cover-frame--logo">
             <img
-              class="article-cover__img article-cover__img--logo"
+              class={`article-cover__img article-cover__img--logo${isUsaWrestlingLogo ? " article-cover__img--usa" : ""}`}
               src={entry.data.cover}
               alt=""
               loading="lazy"
@@ -96,13 +97,13 @@ const formattedDate = entry.data.date.toLocaleDateString("en-US", {
   <Section
     eyebrow="Stay connected"
     title="More updates coming"
-    intro="Join updates or contact the coaches with questions."
+    intro="Contact the coach with questions."
   >
     <CTAButtons
       primaryLabel="Call/Text Coach"
       primaryHref="tel:+19704242757"
-      secondaryLabel="Join Updates"
-      secondaryHref="/membership"
+      secondaryLabel="Email Coach"
+      secondaryHref="mailto:Midwaywrestlingclub@gmail.com"
       secondaryVariant="outline"
     />
   </Section>

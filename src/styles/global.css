@@ -258,8 +258,14 @@ h3 {
   width: auto;
   height: auto;
   object-fit: contain;
+  align-self: center;
+  justify-self: center;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
   position: relative;
+}
+
+.card-media__logo--usa {
+  transform: translateY(-12%);
 }
 
 .photo-tile {
@@ -390,6 +396,15 @@ h3 {
   margin: 0;
 }
 
+.calendar-summary {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.calendar-summary p {
+  margin: 0;
+}
+
 .calendar-controls {
   display: flex;
   flex-wrap: wrap;
@@ -420,11 +435,6 @@ h3 {
 .calendar-month.is-active {
   display: grid;
   gap: var(--space-3);
-}
-
-.calendar-month__header h4 {
-  margin: 0;
-  font-size: 1.1rem;
 }
 
 .calendar-weekdays,
@@ -469,9 +479,37 @@ h3 {
   width: 22px;
   height: 22px;
   object-fit: contain;
-  justify-self: center;
-  align-self: center;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+.calendar-day__practice {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  justify-items: center;
+  align-self: center;
+  justify-self: center;
+  gap: 0.1rem;
+}
+
+.calendar-day__location {
+  color: var(--color-text);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .calendar-day {
+    padding-inline: 0.08rem;
+  }
+
+  .calendar-day__location.is-compact {
+    font-size: 0.48rem;
+    letter-spacing: 0.02em;
+  }
 }
 
 .calendar-day.is-practice {
@@ -1041,8 +1079,14 @@ body.menu-open .mobile-menu__panel {
   max-width: 68%;
   max-height: 68%;
   object-fit: contain;
+  align-self: center;
+  justify-self: center;
   filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
   position: relative;
+}
+
+.article-cover__img--usa {
+  transform: translateY(-12%);
 }
 
 @media (min-width: 640px) {
