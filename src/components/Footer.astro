@@ -6,6 +6,11 @@ const navLinks = [
   { href: "/faq", label: "FAQ" },
   { href: "/news", label: "News" },
   { href: "/membership", label: "Membership" },
+  {
+    href: "https://midway-wrestling-club.printify.me/",
+    label: "Gear",
+    external: true,
+  },
 ];
 
 const facebookLink = "https://www.facebook.com/share/184nobE311/?mibextid=wwXIfr";
@@ -47,7 +52,13 @@ const facebookLink = "https://www.facebook.com/share/184nobE311/?mibextid=wwXIfr
       <p class="eyebrow">Navigate</p>
       <nav class="footer-links" aria-label="Footer">
         {navLinks.map((link) => (
-          <a href={link.href}>{link.label}</a>
+          <a
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
         ))}
       </nav>
     </div>
